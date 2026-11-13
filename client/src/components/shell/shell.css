@@ -170,3 +170,9 @@
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
 }
+
+/* Offline / back-online banner under the top bar */
+.offline-region { position: relative; z-index: 35; }
+.offline-banner, .online-banner { margin: 0; padding: 10px 16px; text-align: center; font-weight: 500; }
+.offline-banner { background: #fef3c7; color: #78350f; border-bottom: 1px solid #f59e0b; }
+.online-banner { background: #d1fae5; color: #064e3b; }
