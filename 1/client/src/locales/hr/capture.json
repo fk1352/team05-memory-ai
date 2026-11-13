@@ -1,0 +1,72 @@
+{
+  "capture": {
+    "title": "Dodaj sjećanje",
+    "subtitle": "Recite svojem AI-ju nešto o sebi. Pretvorit će to u činjenicu ili pretpostavku koju provjerite prije spremanja.",
+    "inputLabel": "Što bi vaš AI trebao zapamtiti?",
+    "inputPlaceholder": "npr. Imam jutarnje sastanke od 9 do 11 u Zagrebu",
+    "inputHint": "Napišite jednu rečenicu. Pregled se ažurira dok pišete.",
+    "charsLeft_one": "Preostao je {{count}} znak",
+    "charsLeft_few": "Preostala su {{count}} znaka",
+    "charsLeft_other": "Preostalo je {{count}} znakova",
+    "examplesLabel": "Isprobajte primjer:",
+    "example1": "Imam jutarnje sastanke od 9 do 11 u Zagrebu",
+    "example2": "Obično pijem kavu prije posla",
+    "example3": "U svibnju letim u Barcelonu",
+    "extract": "Izdvoji sjećanje",
+    "clear": "Očisti",
+    "previewTitle": "Pregled",
+    "previewEmpty": "Pregled će se pojaviti kad napišete rečenicu.",
+    "previewUpdated": "Pregled ažuriran: {{type}}, {{category}}.",
+    "typeLegend": "Vrsta",
+    "type": {
+      "fact": "Činjenica",
+      "inference": "Pretpostavka"
+    },
+    "typeHelp": {
+      "fact": "Vi ste to rekli, pa se sprema kao potvrđeno.",
+      "inference": "Pretpostavka. Sprema se nepotvrđena kako biste je kasnije mogli potvrditi."
+    },
+    "confidence": "Pouzdanost: {{value}}",
+    "statementLabel": "Tekst sjećanja",
+    "categoryLabel": "Kategorija",
+    "whyTitle": "Zašto ovaj prijedlog?",
+    "reason": {
+      "category": "Kategorija je odabrana zbog riječi „{{word}}”.",
+      "categoryDefault": "Nije pronađena jasna tema, pa je razvrstano pod Sklonosti. Promijenite ako treba.",
+      "hedge": "Napisali ste „{{word}}”, pa se ovo smatra pretpostavkom.",
+      "firstPerson": "Ovo ste rekli o sebi, pa se smatra činjenicom.",
+      "noFirstPerson": "Nije jasno da se odnosi na vas, pa se smatra pretpostavkom."
+    },
+    "entitiesLabel": "Spomenuto",
+    "save": "Spremi sjećanje",
+    "saving": "Spremanje…",
+    "sourceInfo": "Zaslon za unos, {{date}}",
+    "success": {
+      "title": "Sjećanje je spremljeno",
+      "body": "Spremljeno kao {{type}} u kategoriji {{category}}.",
+      "another": "Dodaj još jedno sjećanje",
+      "quoted": "„{{text}}”"
+    },
+    "errors": {
+      "statementRequired": "Najprije napišite rečenicu.",
+      "statementTooLong_one": "Neka bude kraće od {{count}} znaka.",
+      "statementTooLong_few": "Neka bude kraće od {{count}} znaka.",
+      "statementTooLong_other": "Neka bude kraće od {{count}} znakova.",
+      "paused": "Spremanje sjećanja je pauzirano, pa ništa nije spremljeno. Možete ga ponovno uključiti u Privatnosti.",
+      "pausedLink": "Idi na Privatnost",
+      "network": "Poslužitelj nije dostupan. Vaš je tekst još ovdje, pa pokušajte ponovno.",
+      "validation": "Neki podaci nisu prihvaćeni. Provjerite pregled i pokušajte ponovno.",
+      "server": "Nešto je pošlo po zlu pri spremanju. Pokušajte ponovno."
+    },
+    "retry": "Pokušaj ponovno"
+  },
+  "categories": {
+    "work": "Posao",
+    "food": "Hrana",
+    "location": "Mjesta",
+    "hobbies": "Hobiji",
+    "travel": "Putovanja",
+    "preferences": "Sklonosti",
+    "health": "Zdravlje"
+  }
+}
