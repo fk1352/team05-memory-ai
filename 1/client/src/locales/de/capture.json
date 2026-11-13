@@ -1,0 +1,70 @@
+{
+  "capture": {
+    "title": "Erinnerung hinzufügen",
+    "subtitle": "Erzähl deiner KI etwas über dich. Sie macht daraus eine Tatsache oder eine Vermutung, die du vor dem Speichern prüfst.",
+    "inputLabel": "Was soll sich deine KI merken?",
+    "inputPlaceholder": "z. B. Ich habe Besprechungen von 9 bis 11 in Zagreb",
+    "inputHint": "Schreib einen Satz. Die Vorschau aktualisiert sich beim Tippen.",
+    "charsLeft_one": "Noch {{count}} Zeichen",
+    "charsLeft_other": "Noch {{count}} Zeichen",
+    "examplesLabel": "Probier ein Beispiel:",
+    "example1": "Ich habe Besprechungen von 9 bis 11 in Zagreb",
+    "example2": "Ich trinke meistens Kaffee vor der Arbeit",
+    "example3": "Ich fliege im Mai nach Barcelona",
+    "extract": "Erinnerung extrahieren",
+    "clear": "Leeren",
+    "previewTitle": "Vorschau",
+    "previewEmpty": "Die Vorschau erscheint, sobald du einen Satz schreibst.",
+    "previewUpdated": "Vorschau aktualisiert: {{type}}, {{category}}.",
+    "typeLegend": "Art",
+    "type": {
+      "fact": "Tatsache",
+      "inference": "Vermutung"
+    },
+    "typeHelp": {
+      "fact": "Du hast es selbst gesagt, deshalb wird es als bestätigt gespeichert.",
+      "inference": "Eine Vermutung. Sie wird unbestätigt gespeichert, damit du sie später bestätigen kannst."
+    },
+    "confidence": "Sicherheit: {{value}}",
+    "statementLabel": "Text der Erinnerung",
+    "categoryLabel": "Kategorie",
+    "whyTitle": "Warum dieser Vorschlag?",
+    "reason": {
+      "category": "Kategorie wegen des Wortes „{{word}}“ gewählt.",
+      "categoryDefault": "Kein klares Thema gefunden, deshalb unter Vorlieben abgelegt. Ändere es bei Bedarf.",
+      "hedge": "Du hast „{{word}}“ geschrieben, deshalb gilt das als Vermutung.",
+      "firstPerson": "Du hast das über dich selbst gesagt, deshalb gilt es als Tatsache.",
+      "noFirstPerson": "Es geht nicht eindeutig um dich, deshalb gilt es als Vermutung."
+    },
+    "entitiesLabel": "Erwähnt",
+    "save": "Erinnerung speichern",
+    "saving": "Wird gespeichert…",
+    "sourceInfo": "Eingabebildschirm, {{date}}",
+    "success": {
+      "title": "Erinnerung gespeichert",
+      "body": "Als {{type}} in {{category}} gespeichert.",
+      "another": "Weitere Erinnerung hinzufügen",
+      "quoted": "„{{text}}“"
+    },
+    "errors": {
+      "statementRequired": "Schreib zuerst einen Satz.",
+      "statementTooLong_one": "Bitte unter {{count}} Zeichen bleiben.",
+      "statementTooLong_other": "Bitte unter {{count}} Zeichen bleiben.",
+      "paused": "Das Speichern von Erinnerungen ist pausiert, deshalb wurde nichts gespeichert. Du kannst es unter Datenschutz wieder einschalten.",
+      "pausedLink": "Zu Datenschutz",
+      "network": "Der Server ist nicht erreichbar. Dein Text ist noch da, versuch es noch einmal.",
+      "validation": "Einige Angaben wurden nicht akzeptiert. Prüfe die Vorschau und versuch es noch einmal.",
+      "server": "Beim Speichern ist etwas schiefgelaufen. Versuch es noch einmal."
+    },
+    "retry": "Erneut versuchen"
+  },
+  "categories": {
+    "work": "Arbeit",
+    "food": "Essen",
+    "location": "Orte",
+    "hobbies": "Hobbys",
+    "travel": "Reisen",
+    "preferences": "Vorlieben",
+    "health": "Gesundheit"
+  }
+}

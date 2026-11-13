@@ -1,0 +1,24 @@
+{
+  "enrich": {
+    "title": "Kontekst s Wikipedije",
+    "chipsHelp": "Odaberite naziv da biste vidjeli što Wikipedija kaže o njemu.",
+    "showContext": "Prikaži kontekst za {{term}}",
+    "loading": "Tražim „{{term}}” na Wikipediji…",
+    "source": "Izvor: Wikipedija ({{language}})",
+    "fetched": "Dohvaćeno {{time}}",
+    "readMore": "Pročitajte više na Wikipediji",
+    "newTab": "(otvara se u novoj kartici)",
+    "fallback": "Na vašem jeziku nema članka, pa je prikazan engleski.",
+    "ambiguous": "Više članaka na Wikipediji odgovara pojmu „{{term}}”.",
+    "notFound": "Na Wikipediji nema članka za „{{term}}”. To je u redu, sjećanje i dalje možete spremiti.",
+    "timeout": "Wikipedija predugo odgovara.",
+    "error": "Wikipedija trenutačno nije dostupna.",
+    "offline": "Niste na mreži. Kontekst će se učitati kad se veza vrati.",
+    "retry": "Pokušaj ponovno",
+    "meta": "{{source}} · {{fetched}}"
+  },
+  "offline": {
+    "banner": "Niste na mreži. Možete nastaviti pisati, ali spremanje i kontekst s Wikipedije čekaju dok se veza ne vrati.",
+    "restored": "Ponovno ste na mreži."
+  }
+}

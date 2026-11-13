@@ -1,0 +1,70 @@
+{
+  "capture": {
+    "title": "Add memory",
+    "subtitle": "Tell your AI something about yourself. It turns it into a fact or a guess that you check before saving.",
+    "inputLabel": "What should your AI remember?",
+    "inputPlaceholder": "e.g. I have morning meetings from 9 to 11 in Zagreb",
+    "inputHint": "Write one sentence. The preview updates while you type.",
+    "charsLeft_one": "{{count}} character left",
+    "charsLeft_other": "{{count}} characters left",
+    "examplesLabel": "Try an example:",
+    "example1": "I have morning meetings from 9 to 11 in Zagreb",
+    "example2": "I usually drink coffee before work",
+    "example3": "I'm flying to Barcelona in May",
+    "extract": "Extract memory",
+    "clear": "Clear",
+    "previewTitle": "Preview",
+    "previewEmpty": "Your preview appears here once you write a sentence.",
+    "previewUpdated": "Preview updated: {{type}}, {{category}}.",
+    "typeLegend": "Type",
+    "type": {
+      "fact": "Fact",
+      "inference": "Inference"
+    },
+    "typeHelp": {
+      "fact": "You said it, so it is saved as verified.",
+      "inference": "A guess. It is saved unverified so you can confirm it later."
+    },
+    "confidence": "Confidence: {{value}}",
+    "statementLabel": "Memory text",
+    "categoryLabel": "Category",
+    "whyTitle": "Why this suggestion?",
+    "reason": {
+      "category": "Category chosen because of the word “{{word}}”.",
+      "categoryDefault": "No clear topic found, so it is filed under Preferences. Change it if needed.",
+      "hedge": "You wrote “{{word}}”, so this is treated as a guess.",
+      "firstPerson": "You said this about yourself, so it is treated as a fact.",
+      "noFirstPerson": "It is not clearly about you, so it is treated as a guess."
+    },
+    "entitiesLabel": "Mentioned",
+    "save": "Save memory",
+    "saving": "Saving…",
+    "sourceInfo": "Input screen, {{date}}",
+    "success": {
+      "title": "Memory saved",
+      "body": "Saved as {{type}} in {{category}}.",
+      "another": "Add another memory",
+      "quoted": "“{{text}}”"
+    },
+    "errors": {
+      "statementRequired": "Write a sentence first.",
+      "statementTooLong_one": "Keep it under {{count}} character.",
+      "statementTooLong_other": "Keep it under {{count}} characters.",
+      "paused": "Memory saving is paused, so nothing was saved. You can turn it back on in Privacy.",
+      "pausedLink": "Go to Privacy",
+      "network": "Couldn't reach the server. Your text is still here, so try again.",
+      "validation": "Some details weren't accepted. Check the preview and try again.",
+      "server": "Something went wrong while saving. Try again."
+    },
+    "retry": "Try again"
+  },
+  "categories": {
+    "work": "Work",
+    "food": "Food",
+    "location": "Places",
+    "hobbies": "Hobbies",
+    "travel": "Travel",
+    "preferences": "Preferences",
+    "health": "Health"
+  }
+}

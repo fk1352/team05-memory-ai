@@ -1,0 +1,24 @@
+{
+  "enrich": {
+    "title": "Kontext aus Wikipedia",
+    "chipsHelp": "Wähle einen Namen, um zu sehen, was Wikipedia darüber sagt.",
+    "showContext": "Kontext für {{term}} anzeigen",
+    "loading": "Suche „{{term}}“ auf Wikipedia…",
+    "source": "Quelle: Wikipedia ({{language}})",
+    "fetched": "Abgerufen {{time}}",
+    "readMore": "Mehr auf Wikipedia lesen",
+    "newTab": "(öffnet in einem neuen Tab)",
+    "fallback": "In deiner Sprache gibt es keinen Artikel, deshalb wird der englische angezeigt.",
+    "ambiguous": "Mehrere Wikipedia-Artikel passen zu „{{term}}“.",
+    "notFound": "Kein Wikipedia-Artikel zu „{{term}}“ gefunden. Kein Problem, du kannst die Erinnerung trotzdem speichern.",
+    "timeout": "Wikipedia hat zu lange gebraucht.",
+    "error": "Wikipedia ist gerade nicht erreichbar.",
+    "offline": "Du bist offline. Der Kontext lädt wieder, sobald du online bist.",
+    "retry": "Erneut versuchen",
+    "meta": "{{source}} · {{fetched}}"
+  },
+  "offline": {
+    "banner": "Du bist offline. Du kannst weiterschreiben, aber Speichern und Wikipedia-Kontext warten, bis du wieder online bist.",
+    "restored": "Du bist wieder online."
+  }
+}
