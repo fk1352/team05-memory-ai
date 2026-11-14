@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 const fs = require('fs');
+const { privacyRouter } = require('./routes/privacy');
 
 dotenv.config();
 
@@ -100,12 +101,14 @@ app.put('/api/memories/:id', (req, res) => {
   db.run(sql, [category, statement, memory_type, confidence_score, source_info, nowUtc, id], function (err) {
     if (err) return res.status(500).json({ error: err.message });
     db.run(
-      `INSERT INTO audit_logs (memory_id, action_type, details, created_at_utc) VALUES (?, 'UPDATE', ?, ?)`,
+      `INSERT INTO audit_logs (memory_id, action_type, details, created_at_utc) VALUES (?, 'updated', ?, ?)`,
       [id, `Updated memory: ${statement}`, nowUtc]
     );
     res.json({ updated: this.changes, id: Number(id) });
   });
 });
+
+app.use('/api', privacyRouter(db));
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
