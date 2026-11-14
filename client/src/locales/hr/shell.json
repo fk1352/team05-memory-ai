@@ -1,0 +1,63 @@
+{
+  "app": {
+    "name": "AI Memory Manager",
+    "pageTitle": "{{page}} · AI Memory Manager",
+    "skipToContent": "Preskoči na glavni sadržaj",
+    "pageLoaded": "Učitano: {{page}}"
+  },
+  "header": {
+    "brandLabel": "AI Memory Manager, idi na početnu",
+    "home": "Početna",
+    "saved": "Spremljena sjećanja",
+    "searchLabel": "Pretraži sjećanja",
+    "searchSubmit": "Traži",
+    "searchPlaceholder": "Pretražite svoja sjećanja…"
+  },
+  "nav": {
+    "label": "Glavna navigacija"
+  },
+  "locale": {
+    "switcherLabel": "Jezik sučelja",
+    "changed": "Jezik je promijenjen: {{language}}"
+  },
+  "user": {
+    "menuButton": "Izbornik računa: {{name}}",
+    "signIn": "Prijava",
+    "signOut": "Odjava"
+  },
+  "notifications": {
+    "unread_one": "{{count}} nepročitana obavijest",
+    "unread_few": "{{count}} nepročitane obavijesti",
+    "unread_other": "{{count}} nepročitanih obavijesti"
+  },
+  "auth": {
+    "title": "Dobro došli natrag",
+    "subtitle": "Prijavite se kako biste nastavili do svog računa.",
+    "email": "E-pošta",
+    "emailPlaceholder": "ime@primjer.hr",
+    "password": "Lozinka",
+    "passwordPlaceholder": "Unesite lozinku",
+    "showPassword": "Prikaži lozinku",
+    "hidePassword": "Sakrij lozinku",
+    "remember": "Zapamti me",
+    "submit": "Prijavi se",
+    "submitting": "Prijava u tijeku…",
+    "demoHint": "Demo račun: {{email}} · lozinka: {{password}}",
+    "errors": {
+      "emailRequired": "Unesite adresu e-pošte.",
+      "emailInvalid": "Unesite valjanu adresu e-pošte, npr. ime@primjer.hr.",
+      "passwordRequired": "Unesite lozinku.",
+      "invalidCredentials": "E-pošta i lozinka se ne podudaraju. Pokušajte ponovno."
+    }
+  },
+  "pages": {
+    "map": "Karta sjećanja",
+    "search": "Pretraga",
+    "input": "Unos",
+    "privacy": "Privatnost",
+    "login": "Prijava"
+  },
+  "placeholder": {
+    "body": "Ovaj je zaslon u izradi i stiže sa sljedećim spajanjem."
+  }
+}

@@ -331,11 +331,44 @@ export function sortMemoriesByLocale(memories, locale = 'hr') {
   return [...memories].sort((a, b) => collator.compare(a.statement || '', b.statement || ''));
 }
 
+export const SUPPORTED_LOCALES = ['en', 'hr', 'de'];
+const LOCALE_STORAGE_KEY = 'memory_ai_locale';
+
+function savedLocale() {
+  try {
+    const saved = localStorage.getItem(LOCALE_STORAGE_KEY);
+    return SUPPORTED_LOCALES.includes(saved) ? saved : 'en';
+  } catch {
+    return 'en'; // storage can be blocked (private mode)
+  }
+}
+
 i18n.use(initReactI18next).init({
   resources,
-  lng: localStorage.getItem('memory_ai_locale') || 'en',
-  fallbackLng: 'en',
+  lng: savedLocale(),
+  fallbackLng: { hr: ['en'], de: ['en'], default: ['en'] },
+  supportedLngs: SUPPORTED_LOCALES,
   interpolation: { escapeValue: false }
 });
+
+// Feature translation files, one per locale and feature:
+// src/locales/<lng>/<feature>.json (shell, capture, enrich), deep-merged.
+const featureFiles = import.meta.glob('./locales/*/*.json', { eager: true });
+for (const [file, mod] of Object.entries(featureFiles)) {
+  i18n.addResourceBundle(file.split('/')[2], 'translation', mod.default, true, false);
+}
+
+// <html lang> and dir always match the UI language (WCAG 3.1.1), also on first load.
+function applyDocumentLocale(lng) {
+  document.documentElement.lang = lng;
+  document.documentElement.dir = i18n.dir(lng);
+  try {
+    localStorage.setItem(LOCALE_STORAGE_KEY, lng);
+  } catch {
+    /* ignore */
+  }
+}
+applyDocumentLocale(i18n.language);
+i18n.on('languageChanged', applyDocumentLocale);
 
 export default i18n;

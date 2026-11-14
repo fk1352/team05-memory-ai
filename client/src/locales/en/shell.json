@@ -1,0 +1,62 @@
+{
+  "app": {
+    "name": "AI Memory Manager",
+    "pageTitle": "{{page}} · AI Memory Manager",
+    "skipToContent": "Skip to main content",
+    "pageLoaded": "{{page}} loaded"
+  },
+  "header": {
+    "brandLabel": "AI Memory Manager, go to home",
+    "home": "Home",
+    "saved": "Saved memories",
+    "searchLabel": "Search memories",
+    "searchSubmit": "Search",
+    "searchPlaceholder": "Search your memories…"
+  },
+  "nav": {
+    "label": "Main navigation"
+  },
+  "locale": {
+    "switcherLabel": "Interface language",
+    "changed": "Language changed to {{language}}"
+  },
+  "user": {
+    "menuButton": "Account menu for {{name}}",
+    "signIn": "Sign in",
+    "signOut": "Sign out"
+  },
+  "notifications": {
+    "unread_one": "{{count}} unread notification",
+    "unread_other": "{{count}} unread notifications"
+  },
+  "auth": {
+    "title": "Welcome back",
+    "subtitle": "Sign in to continue to your account.",
+    "email": "Email",
+    "emailPlaceholder": "name@example.com",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "remember": "Remember me",
+    "submit": "Sign in",
+    "submitting": "Signing in…",
+    "demoHint": "Demo account: {{email}} · password: {{password}}",
+    "errors": {
+      "emailRequired": "Enter your email address.",
+      "emailInvalid": "Enter a valid email address, for example name@example.com.",
+      "passwordRequired": "Enter your password.",
+      "invalidCredentials": "That email and password don't match. Try again."
+    }
+  },
+  "pages": {
+    "map": "Memory map",
+    "search": "Search",
+    "input": "Input",
+    "privacy": "Privacy",
+    "login": "Sign in"
+  },
+  "placeholder": {
+    "body": "This screen is being built and arrives with the next merge."
+  }
+}

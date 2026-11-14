@@ -31,7 +31,7 @@ export default function Navbar() {
           type="search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder={t('searchPlaceholder')}
+          placeholder={t('header.searchPlaceholder')}
         />
         <button type="submit" aria-label={t('header.searchSubmit')}>
           <SearchIcon />
