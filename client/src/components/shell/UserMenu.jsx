@@ -54,7 +54,6 @@ export default function UserMenu() {
         className="avatar-button"
         aria-expanded={open}
         aria-controls={menuId}
-        aria-label={t('user.menuButton', { name: user.name })}
         onClick={() => setOpen((v) => !v)}
       >
         <span aria-hidden="true" className="avatar">{initials(user.name)}</span>
@@ -63,6 +62,9 @@ export default function UserMenu() {
             {new Intl.NumberFormat(i18n.resolvedLanguage).format(unread)}
           </span>
         )}
+        {/* Name comes from content (not aria-label), so the unread count is read too */}
+        <span className="sr-only">{t('user.menuButton', { name: user.name })}</span>
+        {unread > 0 && <span className="sr-only"> {t('notifications.unread', { count: unread })}</span>}
       </button>
 
       <div id={menuId} hidden={!open} className="user-dropdown">

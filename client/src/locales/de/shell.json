@@ -1,0 +1,62 @@
+{
+  "app": {
+    "name": "AI Memory Manager",
+    "pageTitle": "{{page}} · AI Memory Manager",
+    "skipToContent": "Zum Hauptinhalt springen",
+    "pageLoaded": "{{page}} geladen"
+  },
+  "header": {
+    "brandLabel": "AI Memory Manager, zur Startseite",
+    "home": "Startseite",
+    "saved": "Gespeicherte Erinnerungen",
+    "searchLabel": "Erinnerungen durchsuchen",
+    "searchSubmit": "Suchen",
+    "searchPlaceholder": "Durchsuche deine Erinnerungen…"
+  },
+  "nav": {
+    "label": "Hauptnavigation"
+  },
+  "locale": {
+    "switcherLabel": "Sprache der Benutzeroberfläche",
+    "changed": "Sprache geändert: {{language}}"
+  },
+  "user": {
+    "menuButton": "Kontomenü für {{name}}",
+    "signIn": "Anmelden",
+    "signOut": "Abmelden"
+  },
+  "notifications": {
+    "unread_one": "{{count}} ungelesene Benachrichtigung",
+    "unread_other": "{{count}} ungelesene Benachrichtigungen"
+  },
+  "auth": {
+    "title": "Willkommen zurück",
+    "subtitle": "Melde dich an, um mit deinem Konto fortzufahren.",
+    "email": "E-Mail-Adresse",
+    "emailPlaceholder": "name@beispiel.de",
+    "password": "Passwort",
+    "passwordPlaceholder": "Passwort eingeben",
+    "showPassword": "Passwort anzeigen",
+    "hidePassword": "Passwort verbergen",
+    "remember": "Angemeldet bleiben",
+    "submit": "Anmelden",
+    "submitting": "Anmeldung läuft…",
+    "demoHint": "Demo-Konto: {{email}} · Passwort: {{password}}",
+    "errors": {
+      "emailRequired": "Gib deine E-Mail-Adresse ein.",
+      "emailInvalid": "Gib eine gültige E-Mail-Adresse ein, z. B. name@beispiel.de.",
+      "passwordRequired": "Gib dein Passwort ein.",
+      "invalidCredentials": "E-Mail-Adresse und Passwort passen nicht zusammen. Versuch es noch einmal."
+    }
+  },
+  "pages": {
+    "map": "Erinnerungskarte",
+    "search": "Suche",
+    "input": "Eingabe",
+    "privacy": "Datenschutz",
+    "login": "Anmelden"
+  },
+  "placeholder": {
+    "body": "Dieser Bildschirm ist in Arbeit und kommt mit dem nächsten Merge."
+  }
+}

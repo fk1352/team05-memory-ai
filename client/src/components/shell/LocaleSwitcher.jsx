@@ -31,11 +31,12 @@ export default function LocaleSwitcher() {
             key={code}
             type="button"
             lang={code}
-            aria-label={autonym(code)}
             aria-pressed={i18n.resolvedLanguage === code}
             onClick={() => choose(code)}
           >
+            {/* Accessible name "EN English": contains the visible text (WCAG 2.5.3 Label in Name) */}
             {code.toUpperCase()}
+            <span className="sr-only"> {autonym(code)}</span>
           </button>
         ))}
       </div>

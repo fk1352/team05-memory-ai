@@ -1,5 +1,5 @@
 /* App shell styles. Colours from D1, contrast checked:
-   white on #4338ca = 8.6:1, #4338ca on white = 8.6:1, #475569 on white = 7.6:1 */
+   white on #4338ca = 7.9:1, #4338ca on white = 7.9:1, #475569 on white = 7.6:1, amber ring on #4338ca = 5.5:1 */
 :root {
   --brand: #4338ca;
   --brand-dark: #312e81;
@@ -167,9 +167,6 @@
 .primary-button:disabled { opacity: 0.8; cursor: wait; }
 .demo-hint { margin: 16px 0 0; padding: 8px; border-radius: 10px; background: #f1f5f9; color: var(--muted); font-size: 13px; text-align: center; }
 
-@media (prefers-reduced-motion: reduce) {
-  * { transition: none !important; animation: none !important; }
-}
 
 /* Offline / back-online banner under the top bar */
 .offline-region { position: relative; z-index: 35; }

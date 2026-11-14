@@ -34,8 +34,23 @@ function findSqlFile(name) {
 function open(dbPath = resolveDbPath()) {
   if (dbPath !== ':memory:') fs.mkdirSync(path.dirname(dbPath), { recursive: true });
   const raw = new sqlite3.Database(dbPath);
+  const db = wrap(raw);
+  db.ready = (async () => {
+    await db.exec('PRAGMA foreign_keys = ON;');
+    const table = await db.get("SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'memories'");
+    if (!table) {
+      await db.exec(fs.readFileSync(findSqlFile('schema.sql'), 'utf8'));
+      await db.exec(fs.readFileSync(findSqlFile('seed.sql'), 'utf8'));
+      console.log('Database created from schema.sql + seed.sql');
+    }
+    return db;
+  })();
+  return db;
+}
 
-  const db = {
+/** Promise helpers around a plain sqlite3 connection (index.js shares one connection). */
+function wrap(raw) {
+  return {
     raw,
     run: (sql, params = []) =>
       new Promise((resolve, reject) =>
@@ -51,19 +66,6 @@ function open(dbPath = resolveDbPath()) {
     exec: (sql) => new Promise((resolve, reject) => raw.exec(sql, (err) => (err ? reject(err) : resolve()))),
     close: () => new Promise((resolve) => raw.close(() => resolve())),
   };
-
-  db.ready = (async () => {
-    await db.exec('PRAGMA foreign_keys = ON;');
-    const table = await db.get("SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'memories'");
-    if (!table) {
-      await db.exec(fs.readFileSync(findSqlFile('schema.sql'), 'utf8'));
-      await db.exec(fs.readFileSync(findSqlFile('seed.sql'), 'utf8'));
-      console.log('Database created from schema.sql + seed.sql');
-    }
-    return db;
-  })();
-
-  return db;
 }
 
-module.exports = { open, resolveDbPath };
+module.exports = { open, wrap, resolveDbPath };
