@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import './i18n';
 import VisualMapAndSearchPage from './pages/VisualMapAndSearchPage';
+import PrivacyPage from './pages/PrivacyPage';
 
 export default function App() {
   const { t, i18n } = useTranslation();
@@ -24,7 +25,7 @@ export default function App() {
 
         {/* Navigation Tabs */}
         <nav aria-label="Main navigation" style={{ display: 'flex', gap: '8px' }}>
-          {['map', 'search'].map((tab) => (
+          {['map', 'search', 'privacy'].map((tab) => (
             <button
               key={tab}
               type="button"
@@ -71,7 +72,7 @@ export default function App() {
 
       {/* Main Content Area */}
       <main style={{ padding: '20px 12px' }}>
-        <VisualMapAndSearchPage initialTab={activeTab} />
+        {activeTab === 'privacy' ? <PrivacyPage /> : <VisualMapAndSearchPage initialTab={activeTab} />}
       </main>
     </div>
   );
