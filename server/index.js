@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 const fs = require('fs');
+const { privacyRouter } = require('./routes/privacy');
 
 dotenv.config();
 
@@ -65,8 +66,10 @@ app.get('/api/memories', (req, res) => {
     params.push(type);
   }
   if (minConfidence) {
+    const rawMin = Number(minConfidence);
+    const normMin = rawMin > 1 ? rawMin / 100 : rawMin;
     sql += ' AND confidence_score >= ?';
-    params.push(Number(minConfidence));
+    params.push(normMin);
   }
   if (q) {
     sql += ' AND (LOWER(statement) LIKE LOWER(?) OR LOWER(category) LIKE LOWER(?))';
@@ -85,6 +88,12 @@ app.put('/api/memories/:id', (req, res) => {
   const { id } = req.params;
   const { category, statement, memory_type, confidence_score, source_info } = req.body;
   const nowUtc = new Date().toISOString();
+  const normConf =
+    confidence_score !== undefined && confidence_score !== null
+      ? Number(confidence_score) > 1
+        ? Number(confidence_score) / 100
+        : Number(confidence_score)
+      : null;
 
   const sql = `
     UPDATE memories
@@ -97,28 +106,44 @@ app.put('/api/memories/:id', (req, res) => {
     WHERE id = ?
   `;
 
-  db.run(sql, [category, statement, memory_type, confidence_score, source_info, nowUtc, id], function (err) {
+  db.run(sql, [category, statement, memory_type, normConf, source_info, nowUtc, id], function (err) {
     if (err) return res.status(500).json({ error: err.message });
     db.run(
-      `INSERT INTO audit_logs (memory_id, action_type, details, created_at_utc) VALUES (?, 'UPDATE', ?, ?)`,
+      `INSERT INTO audit_logs (memory_id, action_type, details, created_at_utc) VALUES (?, 'updated', ?, ?)`,
       [id, `Updated memory: ${statement}`, nowUtc]
     );
     res.json({ updated: this.changes, id: Number(id) });
   });
 });
+
 // POST create a new memory (Tyra's Memory Capture & Extraction flow)
 app.post('/api/memories', (req, res) => {
-  const { user_id = 1, category = 'Work', statement, memory_type = 'fact', confidence_score = 90, source_info = 'Manual Input' } = req.body;
+  const { user_id = 1, category = 'Work', statement, memory_type = 'fact', confidence_score = 0.9, source_info = 'Manual Input' } = req.body;
   if (!statement || !statement.trim()) {
     return res.status(400).json({ error: 'Memory statement is required' });
   }
+  const rawConf = Number(confidence_score);
+  const normConf = Number.isNaN(rawConf) ? 0.9 : rawConf > 1 ? rawConf / 100 : rawConf;
   const nowUtc = new Date().toISOString();
-  const sql = `INSERT INTO memories (user_id, category, statement, memory_type, confidence_score, source_info, created_at_utc, verified_at_utc) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
-  db.run(sql, [user_id, category, statement.trim(), memory_type, confidence_score, source_info, nowUtc, nowUtc], function (err) {
+
+  const sql = `INSERT INTO memories (user_id, category, statement, memory_type, confidence_score, source_info, verified_at_utc) VALUES (?, ?, ?, ?, ?, ?, ?)`;
+  db.run(sql, [user_id, category, statement.trim(), memory_type, normConf, source_info, nowUtc], function (err) {
     if (err) return res.status(500).json({ error: err.message });
     const newId = this.lastID;
-    db.run(`INSERT INTO audit_logs (memory_id, action_type, details, created_at_utc) VALUES (?, 'CREATE', ?, ?)`, [newId, `Created memory: ${statement.trim()}`, nowUtc]);
-    res.status(201).json({ id: newId, user_id, category, statement: statement.trim(), memory_type, confidence_score, source_info, created_at_utc: nowUtc });
+    db.run(
+      `INSERT INTO audit_logs (memory_id, action_type, details, created_at_utc) VALUES (?, 'created', ?, ?)`,
+      [newId, `Created memory: ${statement.trim()}`, nowUtc]
+    );
+    res.status(201).json({
+      id: newId,
+      user_id,
+      category,
+      statement: statement.trim(),
+      memory_type,
+      confidence_score: normConf,
+      source_info,
+      verified_at_utc: nowUtc
+    });
   });
 });
 
@@ -143,6 +168,9 @@ app.get('/api/enrich', async (req, res) => {
     res.status(503).json({ error: 'Wikipedia service unavailable' });
   }
 });
+
+app.use('/api', privacyRouter(db));
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

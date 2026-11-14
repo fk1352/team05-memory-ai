@@ -1,10 +1,6 @@
 PRAGMA foreign_keys = ON;
 
-DROP TABLE IF EXISTS audit_logs;
-DROP TABLE IF EXISTS memories;
-DROP TABLE IF EXISTS users;
-
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
     id             INTEGER PRIMARY KEY AUTOINCREMENT,
     full_name      TEXT    NOT NULL,
     locale_pref    TEXT    NOT NULL DEFAULT 'en'
@@ -13,7 +9,7 @@ CREATE TABLE users (
                            CHECK (memory_paused IN (0, 1))
 );
 
-CREATE TABLE memories (
+CREATE TABLE IF NOT EXISTS memories (
     id               INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id          INTEGER NOT NULL
                              REFERENCES users(id) ON DELETE CASCADE,
@@ -28,9 +24,9 @@ CREATE TABLE memories (
     verified_at_utc  TEXT
 );
 
-CREATE INDEX idx_memories_user_category ON memories (user_id, category);
+CREATE INDEX IF NOT EXISTS idx_memories_user_category ON memories (user_id, category);
 
-CREATE TABLE audit_logs (
+CREATE TABLE IF NOT EXISTS audit_logs (
     id              INTEGER PRIMARY KEY AUTOINCREMENT,
     memory_id       INTEGER REFERENCES memories(id) ON DELETE SET NULL,
     action_type     TEXT    NOT NULL
@@ -42,4 +38,4 @@ CREATE TABLE audit_logs (
                             DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ', 'now'))
 );
 
-CREATE INDEX idx_audit_created ON audit_logs (created_at_utc DESC);
+CREATE INDEX IF NOT EXISTS idx_audit_created ON audit_logs (created_at_utc DESC);
