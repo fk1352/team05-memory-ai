@@ -36,3 +36,10 @@ export const getMemories = () => request('/memories');
 
 export const deleteMemories = (ids) =>
   request('/memories', { method: 'DELETE', body: JSON.stringify({ ids }) });
+
+export const getAuditLogs = (limit = 50) => request(`/audit-logs?limit=${limit}`);
+
+export const getSettings = (userId = 1) => request(`/users/settings?user_id=${userId}`);
+
+export const updateSettings = (userId, changes) =>
+  request('/users/settings', { method: 'PATCH', body: JSON.stringify({ user_id: userId, ...changes }) });

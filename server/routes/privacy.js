@@ -83,6 +83,92 @@ function privacyRouter(rawDb) {
     }
   });
 
+  router.get('/audit-logs', async (req, res) => {
+    const limit = Math.min(parseId(req.query.limit) || 50, 200);
+    const memoryId = req.query.memory_id ? parseId(req.query.memory_id) : null;
+    if (req.query.memory_id && !memoryId) return res.status(400).json({ error: 'invalidId' });
+
+    let sql = `
+      SELECT a.id, a.memory_id, a.action_type, a.details, a.created_at_utc,
+             m.statement AS memory_statement, m.category AS memory_category
+      FROM audit_logs a
+      LEFT JOIN memories m ON m.id = a.memory_id`;
+    const params = [];
+    if (memoryId) {
+      sql += ' WHERE a.memory_id = ?';
+      params.push(memoryId);
+    }
+    sql += ' ORDER BY a.id DESC LIMIT ?';
+    params.push(limit);
+
+    try {
+      return res.json(await db.all(sql, params));
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ error: 'server' });
+    }
+  });
+
+  const readUser = (id) => db.get('SELECT id, full_name, locale_pref, memory_paused FROM users WHERE id = ?', [id]);
+  const toJson = (user) => ({ ...user, memory_paused: Boolean(user.memory_paused) });
+
+  router.get('/users/settings', async (req, res) => {
+    const userId = parseId(req.query.user_id ?? 1);
+    if (!userId) return res.status(400).json({ error: 'invalidId' });
+    try {
+      const user = await readUser(userId);
+      if (!user) return res.status(404).json({ error: 'userNotFound' });
+      return res.json(toJson(user));
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ error: 'server' });
+    }
+  });
+
+  router.patch('/users/settings', async (req, res) => {
+    const body = req.body ?? {};
+    const userId = parseId(body.user_id ?? 1);
+    if (!userId) return res.status(400).json({ error: 'invalidId' });
+
+    const fields = {};
+    if (body.memory_paused !== undefined) {
+      if (typeof body.memory_paused !== 'boolean') {
+        return res.status(400).json({ error: 'validation', fields: { memory_paused: 'invalid' } });
+      }
+      fields.memory_paused = body.memory_paused ? 1 : 0;
+    }
+    if (body.locale_pref !== undefined) {
+      if (!['en', 'hr', 'de'].includes(body.locale_pref)) {
+        return res.status(400).json({ error: 'validation', fields: { locale_pref: 'invalid' } });
+      }
+      fields.locale_pref = body.locale_pref;
+    }
+    if (!Object.keys(fields).length) return res.status(400).json({ error: 'nothingToUpdate' });
+
+    try {
+      const user = await readUser(userId);
+      if (!user) return res.status(404).json({ error: 'userNotFound' });
+
+      await db.exec('BEGIN');
+      const sets = Object.keys(fields).map((key) => `${key} = ?`).join(', ');
+      await db.run(`UPDATE users SET ${sets} WHERE id = ?`, [...Object.values(fields), userId]);
+      if (fields.memory_paused !== undefined && fields.memory_paused !== user.memory_paused) {
+        const action = fields.memory_paused ? 'paused' : 'resumed';
+        await db.run(
+          'INSERT INTO audit_logs (memory_id, action_type, details, created_at_utc) VALUES (NULL, ?, ?, ?)',
+          [action, `User ${userId} ${action} memory saving`, nowUtc()],
+        );
+      }
+      await db.exec('COMMIT');
+
+      return res.json(toJson(await readUser(userId)));
+    } catch (err) {
+      await db.exec('ROLLBACK').catch(() => {});
+      console.error(err);
+      return res.status(500).json({ error: 'server' });
+    }
+  });
+
   return router;
 }
 
